@@ -25,5 +25,20 @@ public class CustomerController {
         customerRepo.save(customer);
     }
 
+    @DeleteMapping(value = "/{id}")
+    public void deleteCustomer(@PathVariable("id") Integer id){
+        customerRepo.deleteById(id);
+    }
+
+    @GetMapping(value = "/{id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public Customer getCustomer(@PathVariable("id") Integer id){
+        return customerRepo.findById(id).orElse(null);
+    }
+
+    @PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public void updateCustomer(@RequestBody Customer customer){
+        customerRepo.save(customer);
+    }
+
 
 }
