@@ -9,7 +9,7 @@ import java.time.LocalDate;
 public class Customer {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private Integer id;
 
@@ -21,6 +21,15 @@ public class Customer {
 
     @Column(name = "gender", nullable = false)
     private String gender;
+
+    public Customer() {
+    }
+
+    public Customer(String username, LocalDate dateOfBirth, String gender) {
+        this.username = username;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+    }
 
     public Integer getId() {
         return id;
