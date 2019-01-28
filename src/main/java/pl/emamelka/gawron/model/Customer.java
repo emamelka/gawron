@@ -1,11 +1,14 @@
 package pl.emamelka.gawron.model;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "customers")
 @Access(AccessType.FIELD)
+@DynamicUpdate
 public class Customer {
 
     @Id
@@ -29,6 +32,24 @@ public class Customer {
         this.username = username;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
+    }
+
+    public Customer(CustomerDto customerDto){
+        this.username = customerDto.getUsername();
+        this.dateOfBirth = customerDto.getDateOfBirth();
+        this.gender = customerDto.getGender();
+    }
+
+    public void update(CustomerDto customerDto){
+        if (customerDto.getUsername() != null){
+            this.username = customerDto.getUsername();
+        }
+        if (customerDto.getDateOfBirth() != null){
+            this.dateOfBirth = customerDto.getDateOfBirth();
+        }
+        if (customerDto.getGender() != null){
+            this.gender = customerDto.getGender();
+        }
     }
 
     public Integer getId() {
