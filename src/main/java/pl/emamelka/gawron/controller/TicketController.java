@@ -53,11 +53,6 @@ public class TicketController {
                 .orElseThrow(EntityNotFoundException::new);
     }
 
-    @PutMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public void updateTicket(@RequestBody Ticket ticket){
-        ticketRepo.save(ticket);
-    }
-
     @PostMapping(value = "/buy", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public void buyTicket(@RequestBody TicketDto ticketDto){
         ticketValidator.validateTicket(ticketDto);
