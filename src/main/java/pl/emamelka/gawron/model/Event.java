@@ -20,7 +20,7 @@ public class Event {
     private String place;
 
     @Column(name = "max_number_of_seats", nullable = false)
-    private int maxNumberOfSeats;
+    private Integer maxNumberOfSeats;
 
     @Column(name = "start_date", nullable = false)
     private LocalDate startDate;
@@ -33,6 +33,28 @@ public class Event {
         this.place = place;
         this.maxNumberOfSeats = maxNumberOfSeats;
         this.startDate = startDate;
+    }
+
+    public Event(EventDto eventDto){
+        this.eventName = eventDto.getEventName();
+        this.place = eventDto.getPlace();
+        this.maxNumberOfSeats = eventDto.getMaxNumberOfSeats();
+        this.startDate = eventDto.getStartDate();
+    }
+
+    public void update(EventDto eventDto){
+        if (eventDto.getEventName() != null){
+            this.eventName = eventDto.getEventName();
+        }
+        if (eventDto.getPlace() != null){
+            this.place = eventDto.getPlace();
+        }
+        if (eventDto.getMaxNumberOfSeats() != null){
+            this.maxNumberOfSeats = eventDto.getMaxNumberOfSeats();
+        }
+        if (eventDto.getStartDate() !=null){
+            this.startDate = eventDto.getStartDate();
+        }
     }
 
     public Integer getId() {
