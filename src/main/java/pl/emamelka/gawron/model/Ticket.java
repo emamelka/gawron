@@ -1,10 +1,13 @@
 package pl.emamelka.gawron.model;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "tickets")
 @Access(AccessType.FIELD)
+@DynamicUpdate
 public class Ticket {
 
     @Id
@@ -21,7 +24,7 @@ public class Ticket {
     private Event event;
 
     @Column(name = "price", nullable = false)
-    private double price;
+    private Integer price;
 
     @Column(name = "seat", nullable = false)
     private String seat;
@@ -29,7 +32,7 @@ public class Ticket {
     public Ticket() {
     }
 
-    public Ticket(Customer customer, Event event, double price, String seat) {
+    public Ticket(Customer customer, Event event, Integer price, String seat) {
         this.customer = customer;
         this.event = event;
         this.price = price;
@@ -48,11 +51,11 @@ public class Ticket {
         return event;
     }
 
-    public double getPrice() {
+    public Integer getPrice() {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 
