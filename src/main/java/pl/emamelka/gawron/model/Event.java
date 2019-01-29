@@ -1,11 +1,14 @@
 package pl.emamelka.gawron.model;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "events")
 @Access(AccessType.FIELD)
+@DynamicUpdate
 public class Event {
 
     @Id
